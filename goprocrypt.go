@@ -19,6 +19,9 @@ go v1.12.4
 // Allow the developer to change the hash function
 var Hash = crypto.SHA256
 
+// Allow the developer to change the signing function
+var Sign = crypto.SHA512_256
+
 // Allow the developer to take logging
 var Logger = log.New(os.Stdout, "[GOPROTOCRYPT] ", log.Ldate | log.Ltime)
 
@@ -39,7 +42,7 @@ func Encrypt(label []byte, message proto.Message, publicKey *rsa.PublicKey, priv
 	signature, err := rsa.SignPSS(
 		rand.Reader,
 		privateKeyForSig,
-		Hash,
+		Sign,
 		hashed,
 		&opts)
 	checkErr(err)
@@ -79,7 +82,7 @@ func Decrypt(label []byte, encryptedMsg *EncryptedMessage, privateKey *rsa.Priva
 	opts.SaltLength = rsa.PSSSaltLengthEqualsHash
 	err = rsa.VerifyPSS(
 		publicKeyForSig,
-		Hash,
+		Sign,
 		hashed,
 		encryptedMsg.Signature,
 		&opts,
@@ -94,7 +97,7 @@ func Decrypt(label []byte, encryptedMsg *EncryptedMessage, privateKey *rsa.Priva
 func calculateHash(digest []byte) []byte {
 	psshMsg := make([]byte, len(digest))
 	copy(psshMsg, digest)
-	pssh := Hash.New()
+	pssh := Sign.New()
 	pssh.Write(psshMsg)
 	return pssh.Sum(nil)
 }

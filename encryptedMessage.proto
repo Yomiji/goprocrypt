@@ -3,6 +3,7 @@ package goprocrypt;
 option go_package = "goprocrypt";
 
 message EncryptedMessage {
-    bytes signature = 1;
-    bytes digest = 3;
+    bytes id = 1; //hash of type
+    bytes signature = 3;
+    bytes digest = 5;
 }
