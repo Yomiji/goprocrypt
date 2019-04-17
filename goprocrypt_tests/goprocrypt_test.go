@@ -1,11 +1,11 @@
 package goprocrypt_tests
 
 import (
-	"testing"
-	"github.com/Yomiji/goprocrypt"
 	"github.com/Yomiji/genrsa"
-	"time"
+	"github.com/Yomiji/goprocrypt"
 	"github.com/golang/protobuf/proto"
+	"testing"
+	"time"
 )
 
 var testMsg = &TestMsg{
