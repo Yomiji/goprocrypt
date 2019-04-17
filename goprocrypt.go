@@ -2,16 +2,17 @@ package goprocrypt
 
 import (
 	"crypto"
+	"crypto/rand"
+	"crypto/rsa"
+	"github.com/golang/protobuf/proto"
 	"log"
 	"os"
-	"github.com/golang/protobuf/proto"
-	"crypto/rsa"
-	"crypto/rand"
 )
 
 /**
 From: https://medium.com/@raul_11817/golang-cryptography-rsa-asymmetric-algorithm-e91363a2f7b3
 Integrated with protocol buffers for message encryption
+go v1.12.4
 */
 
 
