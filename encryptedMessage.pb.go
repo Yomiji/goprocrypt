@@ -3,9 +3,11 @@
 
 package goprocrypt
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
+import (
+	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -16,7 +18,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type EncryptedMessage struct {
 	Id                   []byte   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -31,16 +33,17 @@ func (m *EncryptedMessage) Reset()         { *m = EncryptedMessage{} }
 func (m *EncryptedMessage) String() string { return proto.CompactTextString(m) }
 func (*EncryptedMessage) ProtoMessage()    {}
 func (*EncryptedMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_encryptedMessage_66aa6da1d776b95f, []int{0}
+	return fileDescriptor_dc45adbfce800ef5, []int{0}
 }
+
 func (m *EncryptedMessage) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_EncryptedMessage.Unmarshal(m, b)
 }
 func (m *EncryptedMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_EncryptedMessage.Marshal(b, m, deterministic)
 }
-func (dst *EncryptedMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EncryptedMessage.Merge(dst, src)
+func (m *EncryptedMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EncryptedMessage.Merge(m, src)
 }
 func (m *EncryptedMessage) XXX_Size() int {
 	return xxx_messageInfo_EncryptedMessage.Size(m)
@@ -76,11 +79,9 @@ func init() {
 	proto.RegisterType((*EncryptedMessage)(nil), "goprocrypt.EncryptedMessage")
 }
 
-func init() {
-	proto.RegisterFile("encryptedMessage.proto", fileDescriptor_encryptedMessage_66aa6da1d776b95f)
-}
+func init() { proto.RegisterFile("encryptedMessage.proto", fileDescriptor_dc45adbfce800ef5) }
 
-var fileDescriptor_encryptedMessage_66aa6da1d776b95f = []byte{
+var fileDescriptor_dc45adbfce800ef5 = []byte{
 	// 125 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4b, 0xcd, 0x4b, 0x2e,
 	0xaa, 0x2c, 0x28, 0x49, 0x4d, 0xf1, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0xd5, 0x2b, 0x28, 0xca,

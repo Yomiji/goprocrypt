@@ -9,9 +9,9 @@ import (
 )
 
 var testMsg = &TestMsg{
-Time:time.Now().Unix(),
-TrialNo:0,
-Msgtext:"Some Text",
+	Time:    time.Now().Unix(),
+	TrialNo: 0,
+	Msgtext: "Some Text",
 }
 
 var party1private, party1public = genrsa.MakeKeys(2048)
@@ -75,4 +75,3 @@ func TestDecryptBadPrivateKey(t *testing.T) {
 		t.Fatalf("Err: %v\nEncMsg: %v\nDecMsg: %v\n", err, encMsg, decMsg)
 	}
 }
-

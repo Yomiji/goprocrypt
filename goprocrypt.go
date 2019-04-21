@@ -15,7 +15,6 @@ Integrated with protocol buffers for message encryption
 go v1.12.4
 */
 
-
 // Allow the developer to change the hash function
 var Hash = crypto.SHA256
 
@@ -23,7 +22,7 @@ var Hash = crypto.SHA256
 var Sign = crypto.SHA512_256
 
 // Allow the developer to take logging
-var Logger = log.New(os.Stdout, "[GOPROTOCRYPT] ", log.Ldate | log.Ltime)
+var Logger = log.New(os.Stdout, "[GOPROTOCRYPT] ", log.Ldate|log.Ltime)
 
 // Encrypt a protocol buffer 'message' with the given label using the given public key
 func Encrypt(label []byte, message proto.Message, publicKey *rsa.PublicKey, privateKeyForSig *rsa.PrivateKey) (encMsg *EncryptedMessage, err error) {
@@ -57,7 +56,7 @@ func Encrypt(label []byte, message proto.Message, publicKey *rsa.PublicKey, priv
 	checkErr(err)
 	return &EncryptedMessage{
 		Signature: signature,
-		Digest: ciphertext,
+		Digest:    ciphertext,
 	}, err
 }
 
@@ -107,8 +106,9 @@ func checkErr(err interface{}) {
 		panic(err)
 	}
 }
+
 func logErr(err interface{}) {
-	if err != nil && Logger != nil{
+	if err != nil && Logger != nil {
 		Logger.Println(err)
 	}
 }
