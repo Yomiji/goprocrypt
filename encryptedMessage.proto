@@ -5,4 +5,6 @@ option go_package = "goprocrypt";
 message EncryptedMessage {
     bytes signature = 1;
     bytes digest = 3;
+    bytes verificationKeyId = 8;
+    bytes decryptionKeyId = 9;
 }
