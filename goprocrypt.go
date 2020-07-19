@@ -5,7 +5,6 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"log"
-	"math/big"
 	"os"
 
 	"github.com/golang/protobuf/proto"
@@ -60,10 +59,7 @@ func Encrypt(label []byte, message proto.Message, publicKey *rsa.PublicKey, priv
 	return &EncryptedMessage{
 		Signature: signature,
 		Digest:    ciphertext,
-		PublicKey: &PublicKey{
-			N: pkey.N.Bytes(),
-			E: int32(pkey.E),
-		},
+		PublicKey: RsaKeyToPbKey(pkey),
 	}, err
 }
 
@@ -86,13 +82,8 @@ func Decrypt(label []byte, encryptedMsg *EncryptedMessage, privateKey *rsa.Priva
 	checkErr(err)
 	var opts rsa.PSSOptions
 	opts.SaltLength = rsa.PSSSaltLengthEqualsHash
-	n := big.NewInt(0)
-	n.SetBytes(encryptedMsg.PublicKey.N)
 	err = rsa.VerifyPSS(
-		&rsa.PublicKey{
-			N: n,
-			E: int(encryptedMsg.PublicKey.E),
-		},
+		PbKeyToRsaKey(encryptedMsg.PublicKey),
 		Sign,
 		hashed,
 		encryptedMsg.Signature,
