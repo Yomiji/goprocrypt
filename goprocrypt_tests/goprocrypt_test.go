@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/yomiji/genrsa"
 	"github.com/yomiji/goprocrypt/v2"
+	"google.golang.org/protobuf/proto"
 )
 
 var testMsg = &TestMsg{
